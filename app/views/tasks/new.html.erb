@@ -1,0 +1,71 @@
+<div class="home_container d-flex justify-content-center align-items-center">
+  <h1>New Task</h1>
+
+  <%= form_for([@user, @task]) do |f| %>
+    <div class="field">
+      <%= f.label :title, "Title" %>
+      <%= f.text_field :title %>
+    </div>
+
+    <div class="field">
+      <%= f.label :content, "Content" %>
+      <%= f.text_area :content %>
+    </div>
+
+    <div class="field">
+      <%= f.label :priority, "Priority" %>
+      <%= f.select :priority, ['high', 'medium', 'low'] %>
+    </div>
+
+    <div class="field">
+      <%= f.label :status, "Status" %>
+      <%= f.select :status, ['pending', 'progress', 'done'] %>
+    </div>
+
+    <div class="field">
+      <%= f.label :start_time, "Start Time" %>
+      <%= f.datetime_select :start_time %>
+    </div>
+
+    <div class="field">
+      <%= f.label :end_time, "End Time" %>
+      <%= f.datetime_select :end_time %>
+    </div>
+
+    <h3>Tags</h3>
+    <div id="tags">
+      <%= f.fields_for :tags do |tags_field| %>
+        <div class="tag-fields">
+          <%= tags_field.label :name, "Tag Name" %>
+          <%= tags_field.text_field :name %>
+          <%= tags_field.check_box :_destroy %>
+          <%= tags_field.label :_destroy, "Remove" %>
+        </div>
+      <% end %>
+    </div>
+     <button type="button" id="add-tag" class="btn btn-secondary">Add Tag</button>
+
+    <div class="actions">
+      <%= f.submit "Create Task" %>
+    </div>
+  <% end %>
+
+  <%= link_to 'Back', user_tasks_path(@user), class: 'btn btn-secondary' %>
+</div>
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function () {
+        document.getElementById("add-tag").addEventListener("click", function () {
+            const tagsDiv = document.getElementById("tags");
+            const newTagDiv = document.createElement("div");
+            newTagDiv.className = "tag-fields";
+            const newId = new Date().getTime();
+            newTagDiv.innerHTML = `
+        <label for="task_tags_attributes_${newId}_name">Tag Name</label>
+        <input type="text" name="task[tags_attributes][${newId}][name]" id="task_tags_attributes_${newId}_name">
+        <input type="checkbox" name="task[tags_attributes][${newId}][_destroy]" id="task_tags_attributes_${newId}__destroy">
+        <label for="task_tags_attributes_${newId}__destroy">Remove</label>
+      `;
+            tagsDiv.appendChild(newTagDiv);
+        });
+    });
+</script>
