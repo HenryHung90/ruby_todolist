@@ -28,7 +28,7 @@ RSpec.feature "TaskManagement", type: :feature do
     click_button 'Create Task'
 
     # 預期在畫面上出現字樣
-    expect(page).to have_text('Task was successfully created.')
+    expect(page).to have_text('Task was successfully created')
   end
 
   # 測試 update task
@@ -41,7 +41,7 @@ RSpec.feature "TaskManagement", type: :feature do
     select_datetime 'end', with: Time.now + 1.day
     click_button 'Update Task'
 
-    expect(page).to have_text('Task was successfully updated.')
+    expect(page).to have_text('Task was successfully updated')
   end
 
   # 測試 delete task
@@ -49,7 +49,7 @@ RSpec.feature "TaskManagement", type: :feature do
     visit user_task_path(user, task)
     click_link 'Delete'
 
-    expect(page).to have_text('Task was successfully destroyed.')
+    expect(page).to have_text('Task was successfully destroyed')
   end
 
   private
