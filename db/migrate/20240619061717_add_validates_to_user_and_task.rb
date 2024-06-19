@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # change log
 class AddValidatesToUserAndTask < ActiveRecord::Migration[7.1]
   def change
@@ -13,7 +15,6 @@ class AddValidatesToUserAndTask < ActiveRecord::Migration[7.1]
     change_column_null :users, :name, false
     change_column_null :users, :password, false
     change_column_null :users, :role_id, false
-
   end
 
   def task_changes
