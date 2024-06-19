@@ -10,7 +10,7 @@ class Task < ApplicationRecord
   # scope :complete_before, ->(date) { where('end_time < ?', date) }
   scope :status_done, -> { where(status: 'done') }
 
-  validates :title, presence: true, length: { maximum: 30 }
+  validates :title, presence: true, length: { maximum: 100 }
   validates :content, presence: true, length: { maximum: 500 }
   validates :priority, presence: true, inclusion: { in: %w[high medium low] }
   validates :status, presence: true, inclusion: { in: %w[pending progress done] }
