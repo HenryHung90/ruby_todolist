@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   # 定義 User 測試工廠
   # 生成隨機用戶登入名稱、用戶名稱

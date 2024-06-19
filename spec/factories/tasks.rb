@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   # 創建 task 工廠
   # association :user 設定該任務屬於一個 user

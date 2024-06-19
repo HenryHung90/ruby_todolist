@@ -1,32 +1,34 @@
+# frozen_string_literal: true
+
 class TasksController < ApplicationController
   before_action :set_user
-  before_action :set_task, only: [:edit, :update, :show, :destroy]
+  before_action :set_task, only: %i[edit update show destroy]
+
+  def show
+    @task
+  end
 
   def new
     @task = @user.tasks.build # 自動設置 user_id 為當前 User 的 id
     @task.tags.build # 初始化 tags 與 task 的關聯
   end
 
+  def edit
+    @task
+  end
+
   def create
     @task = @user.tasks.build(task_params)
     if @task.save
-      redirect_to user_path(@user), notice: 'Task was successfully created.'
+      redirect_to user_path(@user), notice: I18n.t('notices.task_created')
     else
       render :new
     end
   end
 
-  def show
-    @task
-  end
-
-  def edit
-    @task
-  end
-
   def update
     if @task.update(task_params)
-      redirect_to user_path(@user), notice: 'Task was successfully updated.'
+      redirect_to user_path(@user), notice: I18n.t('notices.task_updated')
     else
       render :edit
     end
@@ -34,7 +36,7 @@ class TasksController < ApplicationController
 
   def destroy
     @task.destroy
-    redirect_to user_path(@user), notice: 'Task was successfully destroyed.'
+    redirect_to user_path(@user), notice: I18n.t('notices.task_destroyed')
   end
 
   private
@@ -48,6 +50,7 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:title, :content, :priority, :status, :start_time, :end_time, tags_attributes: [:id, :name, :_destroy])
+    params.require(:task).permit(:title, :content, :priority, :status, :start_time, :end_time,
+                                 tags_attributes: %i[id name _destroy])
   end
 end

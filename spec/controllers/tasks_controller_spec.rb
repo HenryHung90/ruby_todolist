@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper' # 引入 Rails 測試助手
 
 RSpec.describe TasksController, type: :controller do
@@ -5,7 +7,7 @@ RSpec.describe TasksController, type: :controller do
   # 用 FacktoryBot 創建 User
   let(:user) { create(:user) }
   # 創建 task 關聯至該 User
-  let(:task) { create(:task, user: user) }
+  let(:task) { create(:task, user:) }
 
   # before do
   #   sign_in user
@@ -23,9 +25,9 @@ RSpec.describe TasksController, type: :controller do
   # 測試 POST create 是否成功，並有創建任務
   describe 'POST #create' do
     it 'creates a new task' do
-      expect {
+      expect do
         post :create, params: { user_id: user.id, task: attributes_for(:task) }
-      }.to change(Task, :count).by(1)
+      end.to change(Task, :count).by(1)
     end
   end
 
@@ -50,9 +52,9 @@ RSpec.describe TasksController, type: :controller do
   describe 'DELETE #destroy' do
     it 'deletes the task' do
       task
-      expect {
+      expect do
         delete :destroy, params: { user_id: user.id, id: task.id }
-      }.to change(Task, :count).by(-1)
+      end.to change(Task, :count).by(-1)
     end
   end
 end

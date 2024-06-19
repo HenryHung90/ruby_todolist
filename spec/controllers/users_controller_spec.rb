@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper' # 引入 Rails 測試助手
 
 RSpec.describe UsersController, type: :controller do

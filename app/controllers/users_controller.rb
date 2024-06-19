@@ -1,24 +1,22 @@
-class UsersController < ApplicationController
-  def new
-  end
+# frozen_string_literal: true
 
-  def create
-  end
+class UsersController < ApplicationController
+  def index; end
 
   def show
     @user = User.find_by(id: params[:id])
-    @tasks = @user.tasks.includes(:tags) # 預加載 tags 以避免 N+1 查詢問題
+    @tasks = @user.tasks.includes(:tags)
+    # @tasks = @user.tasks.includes(:tags).status_done
+    # @tasks = @user.tasks.includes(:tags).complete_before(Date.new(2024, 7, 1)) # 預加載 tags 以避免 N+1 查詢問題
   end
 
-  def edit
-  end
+  def new; end
 
-  def update
-  end
+  def edit; end
 
-  def destory
-  end
+  def create; end
 
-  def index
-  end
+  def update; end
+
+  def destory; end
 end
