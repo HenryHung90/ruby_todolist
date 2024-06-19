@@ -2,18 +2,7 @@
   <script>alert("<%= msg %>")</script>
 <% end %>
 <div class="home_container d-flex justify-content-center align-items-center">
-  <div class="navbar_container">
-    <p class="navbar_title">Ruby Manager</p>
-    <div class="navbar_functions">
-      <div class="navbar_left_functions">
-        <%= link_to "New Task", new_user_task_path(@user), class: "btn navbar_new_task" %>
-      </div>
-      <div class="navbar_right_functions">
-        <button class="btn navbar_Admin_mode">Admin Mode</button>
-        <button class="btn navbar_Logout">Logout</button>
-      </div>
-    </div>
-  </div>
+  <%= render 'shared/navbar' %>
   <div class="todolist_container">
     <table class="table todolist_table">
       <tr>
@@ -26,26 +15,7 @@
         <th class="col-2">End Date</th>
         <th class="col-1">Setting</th>
       </tr>
-      <% @tasks.each do |task| %>
-        <tr>
-          <td class="col-2 todolist_title"><%= task.title %></td>
-          <td class="col-1 todolist_tags">
-            <% task.tags.each do |tag| %>
-              <div><%= tag.name %></div>
-            <% end %>
-          </td>
-          <td class="col-1 todolist_pry">
-            <div class="todolist_pry_<%= task.priority %>"><%= task.priority %></div>
-          </td>
-          <td class="col-1 todolist_status">
-            <div class="todolist_status_<%= task.status %>"><%= task.status %></div>
-          </td>
-          <td class="col-2 todolist_join"><%= task.created_at.strftime("%Y-%m-%d") %></td>
-          <td class="col-2 todolist_start"><%= task.start_time ? task.start_time.strftime("%Y-%m-%d") : '' %></td>
-          <td class="col-2 todolist_end"><%= task.end_time ? task.end_time.strftime("%Y-%m-%d") : '' %></td>
-          <td class="col-1 todolist_setting"><%= link_to 'more', user_task_path(@user, task), class: 'btn btn-success' %></td>
-        </tr>
-      <% end %>
+      <%= render @tasks %>
     </table>
   </div>
 </div>
