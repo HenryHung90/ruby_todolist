@@ -33,7 +33,7 @@
     </div>
 
     <h3>Tags</h3>
-    <div id="tags">
+    <div id="tags" data-controller="task">
       <%= f.fields_for :tags do |tags_field| %>
         <div class="tag-fields">
           <%= tags_field.label :name, "Tag Name" %>
@@ -43,29 +43,12 @@
         </div>
       <% end %>
     </div>
-     <button type="button" id="add-tag" class="btn btn-secondary">Add Tag</button>
+    <button type="button" id="add-tag" class="btn btn-secondary">Add Tag</button>
 
     <div class="actions">
       <%= f.submit "Create Task" %>
     </div>
   <% end %>
 
-  <%= link_to 'Back', user_tasks_path(@user), class: 'btn btn-secondary' %>
+  <%= link_to 'Back', user_path(@user), class: 'btn btn-secondary' %>
 </div>
-<script type="text/javascript">
-    document.addEventListener("DOMContentLoaded", function () {
-        document.getElementById("add-tag").addEventListener("click", function () {
-            const tagsDiv = document.getElementById("tags");
-            const newTagDiv = document.createElement("div");
-            newTagDiv.className = "tag-fields";
-            const newId = new Date().getTime();
-            newTagDiv.innerHTML = `
-        <label for="task_tags_attributes_${newId}_name">Tag Name</label>
-        <input type="text" name="task[tags_attributes][${newId}][name]" id="task_tags_attributes_${newId}_name">
-        <input type="checkbox" name="task[tags_attributes][${newId}][_destroy]" id="task_tags_attributes_${newId}__destroy">
-        <label for="task_tags_attributes_${newId}__destroy">Remove</label>
-      `;
-            tagsDiv.appendChild(newTagDiv);
-        });
-    });
-</script>
