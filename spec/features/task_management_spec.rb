@@ -16,9 +16,9 @@ RSpec.feature 'TaskManagement', type: :feature do
   scenario 'User view tasks order by created_at' do
     # 創建五個任務
     task_list = []
-    task_list << create(:task, user: user, title: 'task 1', created_at: 5.days.ago)
-    task_list << create(:task, user: user, title: 'task 2', created_at: 4.days.ago)
-    task_list << create(:task, user: user, title: 'task 3', created_at: 1.days.ago)
+    task_list << create(:task, user:, title: 'task 1', created_at: 5.days.ago)
+    task_list << create(:task, user:, title: 'task 2', created_at: 4.days.ago)
+    task_list << create(:task, user:, title: 'task 3', created_at: 1.day.ago)
 
     visit user_path(user)
 
