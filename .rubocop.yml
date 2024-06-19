@@ -1,0 +1,22 @@
+require: rubocop-rails
+
+AllCops:
+  TargetRubyVersion: 3.3.3
+  NewCops: enable
+
+Rails:
+  Enabled: true
+
+Layout/LineLength:
+  Max: 120
+
+Metrics/BlockLength:
+  Max: 50
+  ExcludedMethods: [ 'describe', 'context', 'it' ]
+  Exclude:
+    - 'config/environments/development.rb'
+    - 'spec/features/task_management_spec.rb'
+
+# Add additional configuration as needed
+Metrics/MethodLength:
+  Max: 35 # 增加允許的最大行數為 25 行

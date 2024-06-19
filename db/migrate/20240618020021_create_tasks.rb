@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# CreateTasks
 class CreateTasks < ActiveRecord::Migration[7.1]
   def change
     create_table :tasks do |t|
@@ -11,9 +14,34 @@ class CreateTasks < ActiveRecord::Migration[7.1]
 
       t.timestamps
     end
+    check_priority_and_status
+  end
 
-    # 檢查 priority 與 status 是否合規
-    execute "ALTER TABLE tasks ADD CONSTRAINT priority_check CHECK (priority IN ('high', 'medium', 'low'))"
-    execute "ALTER TABLE tasks ADD CONSTRAINT status_check CHECK (status IN ('pending', 'progress', 'done'))"
+  private
+
+  # 檢查 priority 與 status 是否合規
+  def check_priority_and_status
+    reversible do |dir|
+      dir.up do
+        execute <<-SQL.squish
+          ALTER TABLE tasks
+          ADD CONSTRAINT priority_check CHECK (priority IN ('high', 'medium', 'low'))
+        SQL
+        execute <<-SQL.squish
+          ALTER TABLE tasks
+          ADD CONSTRAINT status_check CHECK (status IN ('pending', 'progress', 'done'))
+        SQL
+      end
+      dir.down do
+        execute <<-SQL.squish
+          ALTER TABLE tasks
+          DROP CONSTRAINT priority_check
+        SQL
+        execute <<-SQL.squish
+          ALTER TABLE tasks
+          DROP CONSTRAINT status_check
+        SQL
+      end
+    end
   end
 end
