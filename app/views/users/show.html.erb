@@ -1,6 +1,3 @@
-<% flash.each do |type, msg| %>
-  <script>alert("<%= msg %>")</script>
-<% end %>
 <div class="home_container d-flex justify-content-center align-items-center">
   <%= render 'shared/navbar' %>
   <div class="todolist_container">
@@ -18,4 +15,8 @@
       <%= render @tasks %>
     </table>
   </div>
+  <% flash.each do |type, msg| %>
+    <script>alert("<%= msg %>")</script>
+    <p><%= msg %></p>
+  <% end %>
 </div>
