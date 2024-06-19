@@ -1,34 +1,5 @@
 <div class="home_container d-flex justify-content-center align-items-center">
-  <h1>Tasks#edit</h1>
-  <%= form_for([@user, @task], url: user_task_path(@user, @task), method: :patch) do |f| %>
-    <%= f.label :title, "Title" %>
-    <%= f.text_field :title %> <br/>
-
-    <%= f.label :content, "Content" %>
-    <%= f.text_area :content %> <br/>
-
-    <h3>Tags</h3>
-    <%= f.fields_for :tags do |tags_field| %>
-      <div class="tag-fields">
-        <%= tags_field.label :name, "Tag Name" %>
-        <%= tags_field.text_field :name %>
-        <%= tags_field.check_box :_destroy %>
-        <%= tags_field.label :_destroy, "Remove" %>
-      </div>
-    <% end %>
-
-    <%= f.label :priority, "Priority" %>
-    <%= f.select :priority, %w'high medium low' %> <br/>
-
-    <%= f.label :status, "Status" %>
-    <%= f.select :status, %w'pending progress done' %> <br/>
-
-    <%= f.label :start_time, "Start Time" %>
-    <%= f.datetime_select :start_time %> <br/>
-
-    <%= f.label :end_time, "End Time" %>
-    <%= f.datetime_select :end_time %> <br/>
-
-    <%= f.submit "Update Task" %>
-  <% end %>
+  <h1>Edit task</h1>
+  <%= render 'form' %>
+  <%= link_to 'Back', user_task_path(@user, @task), class: 'btn btn-secondary' %>
 </div>
