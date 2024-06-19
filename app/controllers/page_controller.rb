@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Page Controller
 class PageController < ApplicationController
   def index; end
 

@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# CreateTasks
 class CreateTasks < ActiveRecord::Migration[7.1]
   def change
     create_table :tasks do |t|
@@ -13,8 +14,13 @@ class CreateTasks < ActiveRecord::Migration[7.1]
 
       t.timestamps
     end
+    check_priority_and_status
+  end
 
-    # 檢查 priority 與 status 是否合規
+  private
+
+  # 檢查 priority 與 status 是否合規
+  def check_priority_and_status
     reversible do |dir|
       dir.up do
         execute <<-SQL.squish
