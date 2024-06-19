@@ -1,0 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+
+body {
+    color: #212121;
+    margin: 0;
+    padding: 0;
+    font-family: "JetBrains Mono", monospace;
+}
+
+.container {
+    height: 100vh;
+    max-width: 100vw !important;
+    background-image: url(<%= asset_path('background.png') %>);
+    background-position: center;
+    background-size: cover;
+}
+
+/***********************Login page************************/
+.login_container {
+    border-radius: 10px;
+    background-color: rgba(235, 235, 235, 0.5);
+    backdrop-filter: blur(10px);
+    width: 390px;
+    height: 450px;
+    flex-direction: column;
+}
+
+.login_title {
+    font-size: 30px;
+    font-weight: bold;
+    height: 80px;
+}
+
+.login_input_group {
+    width: 80%;
+}
+
+.login_input_account,
+.login_input_password {
+    margin: 20px auto;
+}
+
+.account, .password {
+    box-shadow: 1px 1px 5px 2px rgba(33, 33, 33, 0.5);
+}
+
+.login_input_title {
+    text-align: left;
+    font-size: 16px;
+    height: 10px;
+}
+
+.login_login_button {
+    margin-top: 50px;
+    background-color: #219EBC;
+    width: 165px;
+    box-shadow: 1px 1px 5px 2px rgba(33, 33, 33, 0.5);
+}
+
+.login_login_button:hover {
+    background-color: #104b59;
+    color: #EBEBEB;
+}
+
+/***********************Home page************************/
+.home_container {
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(235, 235, 235, 0.5);
+}
+
+.navbar_container {
+    height: 10vh;
+    width: 85vw;
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.navbar_title {
+    font-size: 36px;
+    font-weight: bold;
+    width: 23%;
+    margin-top: 10px;
+}
+
+.navbar_functions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 75%;
+    margin-left: 2%;
+}
+
+.navbar_functions button {
+    width: 165px;
+}
+
+.navbar_new_task {
+    background-color: #FB8500;
+}
+
+.navbar_new_task:hover {
+    background-color: #9e5100;
+    color: #EBEBEB;
+}
+
+.navbar_Logout, .navbar_Admin_mode {
+    background-color: #219EBC;
+}
+
+.navbar_Logout:hover, .navbar_Admin_mode:hover {
+    background-color: #104b59;
+    color: #EBEBEB;
+}
+
+
+.todolist_container {
+    height: 80vh;
+    width: 85vw;
+    background-color: white;
+    margin: 10px 0;
+}
+.todolist_table tr{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height:60px;
+}
+.todolist_table td{
+    height:60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.todolist_tags div{
+    margin: 0 5px;
+    border-radius: 10px;
+    border: 1px solid #219EBC;
+    width: 70px;
+}
+
+.todolist_pry div{
+    color: white;
+    width: 80px;
+    border-radius: 10px;
+}
+
+.todolist_pry_high {
+    background-color: #F61D1D;
+}
+
+.todolist_pry_medium {
+    background-color: #FFB400;
+}
+
+.todolist_pry_low {
+    background-color: #00A6ED;
+}
+
+.todolist_status div{
+    border-radius: 10px;
+    width: 100px;
+}
+
+.todolist_status_pending {
+    background-color: #EBEBEB;
+}
+
+.todolist_status_progress {
+    background-color: #8ECAE6;
+}
+
+.todolist_status_done {
+    background-color: #C5F9D7;
+}

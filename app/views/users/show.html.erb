@@ -1,0 +1,22 @@
+<div class="home_container d-flex justify-content-center align-items-center">
+  <%= render 'shared/navbar' %>
+  <div class="todolist_container">
+    <table class="table todolist_table">
+      <tr>
+        <th class="col-2">Title</th>
+        <th class="col-1">Label</th>
+        <th class="col-1">Pry</th>
+        <th class="col-1">Status</th>
+        <th class="col-2">Join Date</th>
+        <th class="col-2">Start Date</th>
+        <th class="col-2">End Date</th>
+        <th class="col-1">Setting</th>
+      </tr>
+      <%= render @tasks %>
+    </table>
+  </div>
+  <% flash.each do |type, msg| %>
+    <script>alert("<%= msg %>")</script>
+    <p><%= msg %></p>
+  <% end %>
+</div>
