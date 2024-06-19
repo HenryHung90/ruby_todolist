@@ -18,10 +18,10 @@
     <% end %>
 
     <%= f.label :priority, "Priority" %>
-    <%= f.select :priority, ['high', 'medium', 'low'] %> <br/>
+    <%= f.select :priority, %w'high medium low' %> <br/>
 
     <%= f.label :status, "Status" %>
-    <%= f.select :status, ['pending', 'progress', 'done'] %> <br/>
+    <%= f.select :status, %w'pending progress done' %> <br/>
 
     <%= f.label :start_time, "Start Time" %>
     <%= f.datetime_select :start_time %> <br/>
