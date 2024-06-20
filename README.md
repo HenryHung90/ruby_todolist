@@ -21,8 +21,7 @@ Things you may want to cover:
 
 * Deployment instructions
 
-### start server on Fly.io
+### start server on Koyeb
 
-* step 1: <code>fly launch</code> (only first time)
-* step 2: <code>fly deploy</code> (update)
-* website https://ruby-todolist.fly.dev/
+* Push to main will autoupdate at Koyeb
+* Website https://glad-riva-ruby-todolist-30923842.koyeb.app/users/1
