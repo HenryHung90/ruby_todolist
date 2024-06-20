@@ -21,4 +21,8 @@ Things you may want to cover:
 
 * Deployment instructions
 
-* ...
+### start server on Fly.io
+
+* step 1: <code>fly launch</code> (only first time)
+* step 2: <code>fly deploy</code> (update)
+* website https://ruby-todolist.fly.dev/
