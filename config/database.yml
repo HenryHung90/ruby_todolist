@@ -79,6 +79,8 @@ test:
 #
 production:
   <<: *default
-  database: ruby_todolist_production
-  username: ruby_todolist
-  password: <%= ENV["RUBY_TODOLIST_DATABASE_PASSWORD"] %>
+  adapter: postgresql
+  url: <%= ENV['DATABASE_URL'] %>
+
+
+
