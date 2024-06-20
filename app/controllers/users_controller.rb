@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   def index; end
 
   def show
-    @user = User.find_by(id: params[:id])
+    @user = User.find(params[:id])
     @tasks = @user.tasks.includes(:tags).order(created_at: :asc)
     # @tasks = Task.order(created_at: :asc)
     # @tasks = @user.tasks.includes(:tags).status_done
