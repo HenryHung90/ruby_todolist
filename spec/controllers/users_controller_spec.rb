@@ -7,7 +7,7 @@ RSpec.describe UsersController, type: :controller do
   # 新增一個 User
   let(:user) { create(:user) }
   # 創建 tasks 關聯至該 User
-  let(:tasks) { create_list(:task, 10, user: user) }
+  let(:tasks) { create_list(:task, 10, user:) }
 
   # 測試 GET show 成功並返回 HTTP status
   describe 'GET #show' do
