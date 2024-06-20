@@ -1,0 +1,61 @@
+#.github/workflows/ci.yml
+
+# 定義工作流名稱
+name: CI
+
+# 何時觸發, 以下在對 main push & pull_request 時會進行
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+
+# jobs 定義 build 工作
+jobs:
+  build:
+    # 在 ubuntu 上執行
+    runs-on: ubuntu-latest
+    # service 定義了工作需要的服務
+    services:
+      # 使用 Postgre 最新版本的 db
+      # 並設定 Postgre 的使用者以及 db for test
+      db:
+        image: postgres:latest
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: myapp_test
+
+    # 設置環境變數
+    env:
+      RAILS_ENV: test
+      DATABASE_URL: postgres://postgres:postgres@localhost/myapp_test
+
+    # 定義流程
+    steps:
+      # 使用 action/checkout@v2 檢視 Code
+      - uses: actions/checkout@v2
+      # 指定安裝 Ruby 3.3.3
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.3.3
+        # 下載依賴項目 bundle gem
+      - name: Install dependencies
+        run: |
+          gem install bundler
+          bundle install
+        # 設定資料庫
+      - name: Set up database
+        # 整個 database 刪掉重來
+        run: |
+          bundle exec rails db:drop db:create db:migrate
+      # 執行 Rspec 測試
+      - name: Run tests
+        run: bundle exec rspec
+      # 執行 RuboCop 測試
+      - name: Run RuboCop
+        run: bundle exec rubocop
