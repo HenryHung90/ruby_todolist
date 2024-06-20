@@ -53,5 +53,4 @@ class UsersController < ApplicationController
     title = params[:title].presence || ''
     tasks.where('title ILIKE ?', "%#{title}%")
   end
-
 end
