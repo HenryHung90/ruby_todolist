@@ -4,7 +4,7 @@
 class UsersController < ApplicationController
   layout 'backend', only: [:index]
   # sort by date
-  SORTABLE_COLUMNS = %w[created_at start_time end_time].freeze
+  SORTABLE_COLUMNS = %w[created_at start_time end_time priority].freeze
 
   def index
     # 透過 join start end date 排序
@@ -36,7 +36,9 @@ class UsersController < ApplicationController
   # 透過 join start end date 排序
   def sort_tasks(tasks)
     sort_by = params[:sort_by].presence_in(SORTABLE_COLUMNS) || 'created_at'
-    tasks.order(sort_by => :asc)
+    return tasks.order(sort_by => :asc) if sort_by != 'priority'
+
+    tasks.order(Arel.sql("CASE priority WHEN 'high' THEN 1 WHEN 'medium' THEN 2 WHEN 'low' THEN 3 END") => :asc)
   end
 
   # 透過 status 篩選
