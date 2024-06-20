@@ -12,6 +12,22 @@ RSpec.feature 'TaskManagement', type: :feature do
   #   sign_in user
   # end
 
+  # 測試取得任務時是用 created time 做排序
+  scenario 'User view tasks order by created_at' do
+    # 創建五個任務
+    task_list = []
+    task_list << create(:task, user:, title: 'task 1', created_at: 5.days.ago)
+    task_list << create(:task, user:, title: 'task 2', created_at: 4.days.ago)
+    task_list << create(:task, user:, title: 'task 3', created_at: 1.day.ago)
+
+    visit user_path(user)
+
+    within '.todolist_table' do
+      titles = all('tr td.todolist_title').map(&:text)
+      expect(titles).to eq([task_list[0].title, task_list[1].title, task_list[2].title])
+    end
+  end
+
   # 測試創建任務
   scenario 'User creates a new task' do
     # 訪問 創建新任務

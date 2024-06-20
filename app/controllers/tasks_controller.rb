@@ -23,7 +23,7 @@ class TasksController < ApplicationController
     if @task.save
       redirect_to user_path(@user), notice: I18n.t('notices.task_created')
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -31,7 +31,7 @@ class TasksController < ApplicationController
     if @task.update(task_params)
       redirect_to user_path(@user), notice: I18n.t('notices.task_updated')
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 

@@ -1,0 +1,55 @@
+<%= form_with(model: [@user, @task], local: true) do |f| %>
+  <% if @task.errors.any? %>
+    <div>
+      <% @task.errors.full_messages.each do |message| %>
+        <h2 style="color:red"><%= message %></h2>
+      <% end %>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :title, "Title" %>
+    <%= f.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= f.label :content, "Content" %>
+    <%= f.text_area :content %>
+  </div>
+
+  <div class="field">
+    <%= f.label :priority, "Priority" %>
+    <%= f.select :priority, %w'high medium low' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :status, "Status" %>
+    <%= f.select :status, %w'pending progress done' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :start_time, "Start Time" %>
+    <%= f.datetime_select :start_time %>
+  </div>
+
+  <div class="field">
+    <%= f.label :end_time, "End Time" %>
+    <%= f.datetime_select :end_time %>
+  </div>
+
+  <h3>Tags</h3>
+  <div id="tags">
+    <%= f.fields_for :tags do |tags_field| %>
+      <div class="tag-fields">
+        <%= tags_field.label :name, "Tag Name" %>
+        <%= tags_field.text_field :name %>
+        <%= tags_field.check_box :_destroy %>
+        <%= tags_field.label :_destroy, "Remove" %>
+      </div>
+    <% end %>
+  </div>
+  <button type="button" id="add-tag" class="btn btn-secondary">Add Tag</button>
+
+  <div class="actions">
+    <%= f.submit @task.new_record? ? "Create Task" : "Update Task" %>
+  </div>
+<% end %>
