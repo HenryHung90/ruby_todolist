@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# CreateUsers
 class CreateUsers < ActiveRecord::Migration[7.1]
   def change
     create_table :users do |t|
@@ -9,8 +12,24 @@ class CreateUsers < ActiveRecord::Migration[7.1]
 
       t.index :username # 使用 username 做索引值
     end
+    check_role_id
+  end
 
+  def check_role_id
     # 查詢 role_id 是否合規
-    execute "ALTER TABLE users ADD CONSTRAINT role_check CHECK (role_id IN ('admin', 'user'))"
+    reversible do |dir|
+      dir.up do
+        execute <<-SQL.squish
+          ALTER TABLE users
+          ADD CONSTRAINT role_check CHECK (role_id IN ('admin', 'user'))
+        SQL
+      end
+      dir.down do
+        execute <<-SQL.squish
+          ALTER TABLE users
+          DROP CONSTRAINT role_check
+        SQL
+      end
+    end
   end
 end

@@ -1,0 +1,30 @@
+# 載入 rubocop
+require: rubocop-rails
+
+# 全域設定, 指定 Ruby 3.3.3, 且啟用新規則
+AllCops:
+  TargetRubyVersion: 3.3.3
+  NewCops: enable
+
+# 啟用 Rails 規則
+Rails:
+  Enabled: true
+
+# 每一行最大長度為 120 字符
+Layout/LineLength:
+  Max: 120
+
+# 規定 Block 長度限制, 排除 describe, content it 用法
+# 因為測試 Code 通常較長
+# 排除 environments/development & spec/features task_management_spec
+Metrics/BlockLength:
+  Max: 50
+  ExcludedMethods: [ 'describe', 'context', 'it' ]
+  Exclude:
+    - 'config/environments/development.rb'
+    - 'spec/features/task_management_spec.rb'
+
+# Add additional configuration as needed
+# def 允許的最大行數為 25 行
+Metrics/MethodLength:
+  Max: 35
