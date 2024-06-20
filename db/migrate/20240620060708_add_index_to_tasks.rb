@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # AddIndexToTasks
 class AddIndexToTasks < ActiveRecord::Migration[7.1]
   def change
