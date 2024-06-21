@@ -1,37 +1,35 @@
 <div class="home_container d-flex justify-content-center align-items-center">
   <h1>Task Details</h1>
-  <p>
+  <p class="p-2">
     <strong>Title:</strong>
     <%= @task.title %>
   </p>
-  <p>
+  <p class="p-2">
     <strong>Content:</strong>
     <%= @task.content %>
   </p>
-  <p>
+  <p class="p-2">
     <strong>Priority:</strong>
     <%= @task.priority %>
   </p>
-  <p>
+  <p class="p-2">
     <strong>Status:</strong>
     <%= @task.status %>
   </p>
-  <p>
+  <p class="p-2">
     <strong>Start Time:</strong>
     <%= @task.start_time ? @task.start_time.strftime("%Y-%m-%d %H:%M:%S") : 'N/A' %>
   </p>
-  <p>
+  <p class="p-2">
     <strong>End Time:</strong>
     <%= @task.end_time ? @task.end_time.strftime("%Y-%m-%d %H:%M:%S") : 'N/A' %>
   </p>
-  <p>
+  <div class="p-2">
     <strong>Tags:</strong>
-  <ul>
     <% @task.tags.each do |tag| %>
-      <li><%= tag.name %></li>
+      <div><%= tag.name %></div>
     <% end %>
-  </ul>
-  </p>
+  </div>
   <%= link_to 'Edit', edit_user_task_path(@user, @task), class: 'btn btn-primary' %>
   <%= link_to 'Back', user_path(@user), class: 'btn btn-secondary' %>
   <%= link_to 'Delete', user_task_path(@user, @task), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
