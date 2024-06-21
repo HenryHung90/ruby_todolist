@@ -1,5 +1,5 @@
 <div class="home_container d-flex justify-content-center align-items-center">
   <p class="h1 mb-5">New Task</p>
   <%= render 'form' %>
-  <%= link_to 'Back', user_path(@user), class: 'btn btn-secondary' %>
+  <%= link_to 'Back', user_path(@user.username), class: 'btn btn-secondary' %>
 </div>

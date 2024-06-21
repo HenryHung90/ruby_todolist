@@ -2,7 +2,7 @@
   <p class="navbar_title">Ruby Manager</p>
   <div class="navbar_functions">
     <div class="navbar_left_functions">
-      <%= link_to "New Task", new_user_task_path(@user), class: "btn navbar_new_task" %>
+      <%= link_to "New Task", new_user_task_path(@user.username), class: "btn navbar_new_task" %>
     </div>
     <div class="navbar_right_functions">
       <%= link_to "Admin Mode", admin_manage_tasks_path, class: "btn navbar_Admin_mode" %>
