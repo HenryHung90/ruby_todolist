@@ -8,14 +8,17 @@ RSpec.feature 'TaskManagement', type: :feature do
   let(:user) { create(:user) }
   let(:task) { create(:task, user:) }
 
-  # before do
-  #   sign_in user
-  # end
+  before do
+    visit login_path
+    fill_in 'username', with: user.username
+    fill_in 'password', with: user.password
+    click_button 'Log in'
+  end
 
   # 測試創建任務
-  scenario 'User creates a new task' do
+  it 'User creates a new task' do
     # 訪問 創建新任務
-    visit new_user_task_path(user)
+    visit new_user_task_path(user.username)
 
     # 填入 title, content
     fill_in 'Title', with: 'New Task'
@@ -34,8 +37,8 @@ RSpec.feature 'TaskManagement', type: :feature do
   end
 
   # 測試 update task
-  scenario 'User updates a task' do
-    visit edit_user_task_path(user, task)
+  it 'User updates a task' do
+    visit edit_user_task_path(user.username, task)
 
     fill_in 'Title', with: 'Updated Task'
     # 填入時間
@@ -47,8 +50,8 @@ RSpec.feature 'TaskManagement', type: :feature do
   end
 
   # 測試 delete task
-  scenario 'User deletes a task' do
-    visit user_task_path(user, task)
+  it 'User deletes a task' do
+    visit user_task_path(user.username, task)
     click_link 'Delete'
 
     expect(page).to have_text('Task was successfully destroyed')
