@@ -31,8 +31,14 @@ en:
   hello: "Hello world"
   notices:
     task_created: 'Task was successfully created.'
+    task_not_created: "Task was fail."
     task_updated: 'Task was successfully updated.'
     task_destroyed: 'Task was successfully destroyed.'
     user_created: 'User was successfully created.'
     user_updated: 'User was successfully updated.'
-    user_destroyed: 'User was successfully destoryed.'
+    user_destroyed: 'User was successfully destroyed.'
+    must_login: 'You must be logged in to access this page.'
+    login_success: 'Logged in successfully'
+    login_failed: 'Invalid username or password'
+    logout_success: 'Logged out successfully'
+
