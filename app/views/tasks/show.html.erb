@@ -1,36 +1,40 @@
 <div class="home_container d-flex justify-content-center align-items-center">
-  <h1>Task Details</h1>
-  <p class="p-2">
-    <strong>Title:</strong>
-    <%= @task.title %>
-  </p>
-  <p class="p-2">
-    <strong>Content:</strong>
-    <%= @task.content %>
-  </p>
-  <p class="p-2">
-    <strong>Priority:</strong>
-    <%= @task.priority %>
-  </p>
-  <p class="p-2">
-    <strong>Status:</strong>
-    <%= @task.status %>
-  </p>
-  <p class="p-2">
-    <strong>Start Time:</strong>
-    <%= @task.start_time ? @task.start_time.strftime("%Y-%m-%d %H:%M:%S") : 'N/A' %>
-  </p>
-  <p class="p-2">
-    <strong>End Time:</strong>
-    <%= @task.end_time ? @task.end_time.strftime("%Y-%m-%d %H:%M:%S") : 'N/A' %>
-  </p>
-  <div class="p-2">
-    <strong>Tags:</strong>
-    <% @task.tags.each do |tag| %>
-      <div><%= tag.name %></div>
-    <% end %>
+  <p class="h1 mb-5">Task Details</p>
+  <div class="flex justify-between items-center w-1/3 p-2 text-left">
+    <div><strong>Title</strong></div>
+    <div><%= @task.title %></div>
   </div>
-  <%= link_to 'Edit', edit_user_task_path(@user, @task), class: 'btn btn-primary' %>
-  <%= link_to 'Back', user_path(@user), class: 'btn btn-secondary' %>
-  <%= link_to 'Delete', user_task_path(@user, @task), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+  <div class="flex justify-between items-center w-1/3 p-2 text-left">
+    <div><strong>Content</strong></div>
+    <div><%= @task.content %></div>
+  </div>
+  <div class="flex justify-between items-center w-1/3 p-2 text-left">
+    <div><strong>Priority</strong></div>
+    <div><%= @task.priority %></div>
+  </div>
+  <div class="flex justify-between items-center w-1/3 p-2 text-left">
+    <div><strong>Status</strong></div>
+    <div><%= @task.status %></div>
+  </div>
+  <div class="flex justify-between items-center w-1/3 p-2 text-left">
+    <div><strong>Start Time</strong></div>
+    <div><%= @task.start_time ? @task.start_time.strftime("%Y-%m-%d %H:%M:%S") : 'N/A' %></div>
+  </div>
+  <div class="flex justify-between items-center w-1/3 p-2 text-left">
+    <div><strong>End Time</strong></div>
+    <div><%= @task.end_time ? @task.end_time.strftime("%Y-%m-%d %H:%M:%S") : 'N/A' %></div>
+  </div>
+  <div class="flex justify-between items-center w-1/3 p-2">
+    <div><strong>Tags</strong></div>
+    <div class="flex justify-around items-center">
+      <% @task.tags.each do |tag| %>
+        <p class="font-bold px-2 mx-2 border-2 border-black-2 border-solid rounded"><%= tag.name %></p>
+      <% end %>
+    </div>
+  </div>
+  <div class="p-2">
+    <%= link_to 'Edit', edit_user_task_path(@user, @task), class: 'btn btn-primary w-150 px-2' %>
+    <%= link_to 'Back', user_path(@user), class: 'btn btn-secondary w-150 px-2' %>
+    <%= link_to 'Delete', user_task_path(@user, @task), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger w-150 px-2' %>
+  </div>
 </div>
