@@ -19,7 +19,7 @@ Layout/LineLength:
 # 排除 environments/development & spec/features task_management_spec
 Metrics/BlockLength:
   Max: 50
-  ExcludedMethods: [ 'describe', 'context', 'it' ]
+  AllowedMethods: [ 'describe', 'context', 'it' ]
   Exclude:
     - 'config/environments/development.rb'
     - 'spec/features/task_management_spec.rb'
