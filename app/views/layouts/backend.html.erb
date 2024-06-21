@@ -17,5 +17,9 @@
 <div class="container d-flex justify-content-center align-items-center text-center">
   <%= yield %>
 </div>
+<% flash.each do |type, msg| %>
+  <script>alert("<%= msg %>")</script>
+  <p><%= msg %></p>
+<% end %>
 </body>
 </html>
