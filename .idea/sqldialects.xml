@@ -2,6 +2,7 @@
 <project version="4">
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/app/controllers/users_controller.rb" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/app/models/task.rb" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/db/migrate/20240618020011_create_users.rb" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/db/migrate/20240618020021_create_tasks.rb" dialect="GenericSQL" />
   </component>
