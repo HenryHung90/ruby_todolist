@@ -4,7 +4,9 @@
 class SessionController < ApplicationController
   skip_before_action :require_login, only: %i[new create]
 
-  def new; end
+  def new
+    redirect_to user_path(current_user.username) if current_user.present?
+  end
 
   def create
     user = User.find_by(username: params[:username])
