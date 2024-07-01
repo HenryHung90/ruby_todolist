@@ -9,6 +9,7 @@ module Admin
 
     def index
       @tasks = filter_tasks(Task).page(params[:page]).per(10)
+      @users = User.all
     end
 
     def show
