@@ -2,14 +2,21 @@
 
 # UserController
 class UsersController < ApplicationController
-  def index; end
+  layout 'backend', only: [:index]
+  # sort by date
+  SORTABLE_COLUMNS = %w[created_at start_time end_time priority].freeze
+
+  def index
+    # 透過 join start end date 排序
+    # @tasks = @user.tasks.includes(:tags).order(start_time: :asc) if params[:sort] == 'start_time'
+  end
 
   def show
     @user = User.find(params[:id])
-    @tasks = @user.tasks.includes(:tags).order(created_at: :asc)
-    # @tasks = Task.order(created_at: :asc)
-    # @tasks = @user.tasks.includes(:tags).status_done
-    # @tasks = @user.tasks.includes(:tags).complete_before(Date.new(2024, 7, 1)) # 預加載 tags 以避免 N+1 查詢問題
+    @tasks = @user.tasks
+                  .sort_by_date_and_priority(params[:sort])
+                  .filter_by_status(params[:status])
+                  .filter_by_title(params[:title])
   end
 
   def new; end

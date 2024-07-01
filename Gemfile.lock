@@ -315,6 +315,7 @@ DEPENDENCIES
   debug
   dockerfile-rails (>= 1.6)
   factory_bot_rails
+  faker
   importmap-rails
   jbuilder
   pg (~> 1.1)

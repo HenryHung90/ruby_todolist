@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_19_061717) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_21_041212) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -34,14 +34,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_19_061717) do
     t.bigint "user_id", null: false
     t.string "title", null: false
     t.text "content"
-    t.string "priority", default: "low"
     t.string "status", default: "pending"
     t.datetime "start_time", precision: nil
     t.datetime "end_time", precision: nil
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "priority", default: 2, null: false
+    t.index ["created_at"], name: "index_tasks_on_created_at"
+    t.index ["end_time"], name: "index_tasks_on_end_time"
+    t.index ["status"], name: "index_tasks_on_status"
+    t.index ["title"], name: "index_tasks_on_title"
     t.index ["user_id"], name: "index_tasks_on_user_id"
-    t.check_constraint "priority::text = ANY (ARRAY['high'::character varying, 'medium'::character varying, 'low'::character varying]::text[])", name: "priority_check"
     t.check_constraint "status::text = ANY (ARRAY['pending'::character varying, 'progress'::character varying, 'done'::character varying]::text[])", name: "status_check"
   end
 
