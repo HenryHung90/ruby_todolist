@@ -7,7 +7,7 @@
     <% end %>
   <% else %>
     <%= form_with url: admin_manage_users_path, method: :get, local: true, data: { turbo_frame: 'users' }, class: 'd-flex justify-content-center' do %>
-      <%= select_tag :role, options_for_select(%w'admin user', params[:status]), include_blank: 'All', class: 'form-select m-1', onchange: 'this.form.submit();' %>
+      <%= select_tag :role, options_for_select(%w'admin user', params[:role]), include_blank: 'All', class: 'form-select m-1', onchange: 'this.form.submit();' %>
       <%= select_tag :sort_by, options_for_select(%w'id created_at updated_at', params[:sort_by]), class: 'form-select m-1', onchange: 'this.form.submit();' %>
       <%= text_field_tag :username, params[:title], placeholder: 'Search by username', class: 'form-control', onchange: 'this.form.submit();' %>
     <% end %>
