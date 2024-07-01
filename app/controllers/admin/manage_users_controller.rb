@@ -63,7 +63,7 @@ module Admin
     def authorize_admin
       return if current_user&.role_id == 'admin'
 
-      redirect_to root_path alert: 'You are not authorized to access this page.'
+      redirect_to root_path alert: I18n.t('notices.auth_denied')
     end
 
     def user_params
