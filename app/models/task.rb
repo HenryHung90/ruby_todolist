@@ -25,6 +25,11 @@ class Task < ApplicationRecord
     title = title.presence || ''
     where('title ILIKE ?', "%#{title}%")
   }
+  scope :filter_by_tag, lambda { |tag|
+    return if tag == ''
+
+    joins(:tags).where('tags.name ILIKE ?', "%#{tag}%")
+  }
 
   validates :title, presence: true, length: { maximum: 100 }
   validates :content, presence: true, length: { maximum: 500 }
