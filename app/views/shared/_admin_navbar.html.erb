@@ -1,0 +1,16 @@
+<div class="navbar_container">
+  <p class="navbar_title">Ruby Manager</p>
+  <div class="navbar_functions">
+    <div class="navbar_left_functions">
+      <%= link_to "New User", new_admin_manage_user_path, class: "btn navbar_new_task" %>
+    </div>
+    <div class="navbar_right_functions">
+      <% if current_page?(admin_manage_users_path) %>
+        <%= link_to "Manage Tasks", admin_manage_tasks_path, class: "btn navbar_Admin_mode" %>
+      <% else %>
+        <%= link_to "Manage Users", admin_manage_users_path, class: "btn navbar_Admin_mode" %>
+      <% end %>
+      <%= link_to "Logout", logout_path, data: { turbo_method: :delete }, class: "btn navbar_Logout" %>
+    </div>
+  </div>
+</div>

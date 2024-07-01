@@ -1,0 +1,28 @@
+<%= form_with(url: edit_admin_manage_user_path, local: true, class: 'w-1/3 flex flex-col justify-center') do |f| %>
+  <% if @user.errors.any? %>
+    <div>
+      <% @user.errors.full_messages.each do |message| %>
+        <h2 style="color:red"><%= message %></h2>
+      <% end %>
+    </div>
+  <% end %>
+  <div class="flex justify-between items-center w-full p-2 text-left">
+    <%= f.label :username, "username" %>
+    <%= f.text_field :username %>
+  </div>
+  <div class="flex justify-between items-center w-full p-2 text-left">
+    <%= f.label :name, "name" %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="flex justify-between items-center w-full p-2 text-left">
+    <%= f.label :password_digest, "password" %>
+    <%= f.text_field "" %>
+  </div>
+  <div class="flex justify-between items-center w-full p-2 text-left">
+    <%= f.label :role_id, "role" %>
+    <%= f.select :role_id, %w'admin user' %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Update User", class: 'btn btn-success mt-5' %>
+  </div>
+<% end %>
