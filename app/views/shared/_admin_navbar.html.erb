@@ -2,7 +2,9 @@
   <p class="navbar_title">Ruby Manager</p>
   <div class="navbar_functions">
     <div class="navbar_left_functions">
-      <%= link_to "New User", new_admin_manage_user_path, class: "btn navbar_new_task" %>
+      <% if current_page?(admin_manage_users_path) %>
+        <%= link_to "New User", new_admin_manage_user_path, class: "btn navbar_new_task" %>
+      <% end %>
     </div>
     <div class="navbar_right_functions">
       <% if current_page?(admin_manage_users_path) %>
