@@ -4,7 +4,7 @@
 class UsersController < ApplicationController
   layout 'backend', only: [:index]
   # sort by date
-  SORTABLE_COLUMNS = %w[created_at start_time end_time].freeze
+  SORTABLE_COLUMNS = %w[created_at start_time end_time priority].freeze
 
   def index
     # 透過 join start end date 排序
@@ -13,7 +13,10 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @tasks = filter_tasks(@user.tasks)
+    @tasks = @user.tasks
+                  .sort_by_date_and_priority(params[:sort])
+                  .filter_by_status(params[:status])
+                  .filter_by_title(params[:title])
   end
 
   def new; end

@@ -15,33 +15,33 @@ RSpec.feature 'TaskManagement', type: :feature do
   # 測試取得任務時是用 created time 做排序
   scenario 'User view tasks order by created_at' do
     # 創建五個任務
-    task_list = []
-    task_list << create(:task, user:, title: 'task 1', created_at: 5.days.ago)
-    task_list << create(:task, user:, title: 'task 2', created_at: 4.days.ago)
-    task_list << create(:task, user:, title: 'task 3', created_at: 1.day.ago)
+    tasks_list = []
+    tasks_list << create(:task, user:, title: 'task 1', created_at: 5.days.ago)
+    tasks_list << create(:task, user:, title: 'task 2', created_at: 4.days.ago)
+    tasks_list << create(:task, user:, title: 'task 3', created_at: 1.day.ago)
 
     visit user_path(user)
 
     within '.todolist_table' do
       titles = all('tr td.todolist_title').map(&:text)
-      expect(titles).to eq([task_list[0].title, task_list[1].title, task_list[2].title])
+      expect(titles).to eq(tasks_list.map(&:title))
     end
   end
 
   # 測試取得任務時是用 end time 做排序
   scenario 'User view tasks order by end_date' do
     # 創建五個任務
-    task_list = []
-    task_list << create(:task, user:, title: 'task 1', end_time: 11.days.ago)
-    task_list << create(:task, user:, title: 'task 2', end_time: 5.days.ago)
-    task_list << create(:task, user:, title: 'task 3', end_time: 4.days.ago)
-    task_list << create(:task, user:, title: 'task 4', end_time: 1.day.ago)
+    tasks_list = []
+    tasks_list << create(:task, user:, title: 'task 1', end_time: 11.days.ago)
+    tasks_list << create(:task, user:, title: 'task 2', end_time: 5.days.ago)
+    tasks_list << create(:task, user:, title: 'task 3', end_time: 4.days.ago)
+    tasks_list << create(:task, user:, title: 'task 4', end_time: 1.day.ago)
 
     visit user_path(user, sort: 'end_date')
 
     within '.todolist_table' do
       titles = all('tr td.todolist_title').map(&:text)
-      expect(titles).to eq([task_list[0].title, task_list[1].title, task_list[2].title, task_list[3].title])
+      expect(titles).to eq(tasks_list.map(&:title))
     end
   end
 
