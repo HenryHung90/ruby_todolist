@@ -41,4 +41,5 @@ en:
     login_success: 'Logged in successfully'
     login_failed: 'Invalid username or password'
     logout_success: 'Logged out successfully'
-
+    auth_denied: 'You are not authorized to access this page.'
+    delete_admin_denied: 'need at least one admin'
