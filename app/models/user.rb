@@ -12,6 +12,6 @@ class User < ApplicationRecord
 
   validates :username, presence: true, length: { maximum: 50 }
   validates :name, presence: true, length: { maximum: 30 }
-  validates :password, presence: true, length: { minimum: 6 }
+  validates :password, presence: true, length: { minimum: 6 }, if: -> { new_record? || !password.nil? }
   validates :role_id, inclusion: { in: %w[admin user] }
 end
