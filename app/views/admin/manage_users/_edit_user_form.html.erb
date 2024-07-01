@@ -1,4 +1,4 @@
-<%= form_with(url: edit_admin_manage_user_path, local: true, class: 'w-1/3 flex flex-col justify-center') do |f| %>
+<%= form_with(model: @user, url: current_page?(new_admin_manage_user_path) ? admin_manage_users_path : admin_manage_user_path(@user), local: true, class: 'w-1/3 flex flex-col justify-center') do |f| %>
   <% if @user.errors.any? %>
     <div>
       <% @user.errors.full_messages.each do |message| %>
@@ -16,13 +16,13 @@
   </div>
   <div class="flex justify-between items-center w-full p-2 text-left">
     <%= f.label :password_digest, "password" %>
-    <%= f.text_field "" %>
+    <%= f.password_field :password %>
   </div>
   <div class="flex justify-between items-center w-full p-2 text-left">
     <%= f.label :role_id, "role" %>
     <%= f.select :role_id, %w'admin user' %>
   </div>
   <div class="actions">
-    <%= f.submit "Update User", class: 'btn btn-success mt-5' %>
+    <%= f.submit current_page?(new_admin_manage_user_path) ? "Create User" : "Update User", class: 'btn btn-success mt-5' %>
   </div>
 <% end %>
