@@ -7,8 +7,8 @@ module Admin
     before_action :set_user, only: %i[show edit update destroy]
 
     def index
-      @users = User.all
-                   .sort_by_date_or_id(params[:sort_by])
+      @users = User.sort_by_date_or_id(params[:sort_by])
+                   .filter_by_role(params[:role])
                    .page(params[:page]).per(10)
     end
 
@@ -48,8 +48,15 @@ module Admin
     end
 
     def destroy
-      @user.destroy
-      redirect_to admin_manage_users_path, notice: I18n.t('notices.user_destroyed')
+      if User.where(role_id: 'admin').count <= 1 && @user.role_id == 'admin'
+        return redirect_to admin_manage_users_path, alert: I18n.t('notices.delete_admin_denied')
+      end
+
+      if @user.destroy
+        redirect_to admin_manage_users_path, notice: I18n.t('notices.user_destroyed')
+      else
+        render :edit, status: :unprocessable_entity
+      end
     end
 
     private
@@ -59,11 +66,10 @@ module Admin
     end
 
     # 檢查是否有權限
-    # 進入
     def authorize_admin
       return if current_user&.role_id == 'admin'
 
-      redirect_to root_path alert: 'You are not authorized to access this page.'
+      redirect_to root_path alert: I18n.t('notices.auth_denied')
     end
 
     def user_params
