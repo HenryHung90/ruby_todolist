@@ -18,7 +18,6 @@ RSpec.describe 'Sessions', type: :request do
       it "logs the user in and redirects to the user's page" do
         post login_path, params: { username: user.username, password: user.password }
         expect(response).to redirect_to(user_path(user.username))
-        follow_redirect!
         # expect(response).to have_text(I18n.t('notices.login_success'))
       end
     end
