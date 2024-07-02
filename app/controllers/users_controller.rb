@@ -14,8 +14,6 @@ class UsersController < ApplicationController
   def show
     # raise 'This is a test exception'
     @user = User.find_by(username: params[:id])
-    return unless @user.tasks
-
     @tasks = @user.tasks
                   .includes(:tags)
                   .sort_by_date_and_priority(params[:sort])

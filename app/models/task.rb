@@ -22,11 +22,14 @@ class Task < ApplicationRecord
     where(status:)
   }
   scope :filter_by_title, lambda { |title|
-    title = title.presence || ''
+    title = title.presence
+    return if title == ''
+
     where('title ILIKE ?', "%#{title}%")
   }
   scope :filter_by_tag, lambda { |tag|
-    return if tag == ''
+    tag = tag.presence || 'all'
+    return if tag == 'all'
 
     joins(:tags).where('tags.name ILIKE ?', "%#{tag}%")
   }
