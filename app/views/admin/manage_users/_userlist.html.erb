@@ -1,0 +1,27 @@
+<table class="table userlist_table">
+  <tr>
+    <th class="col-1">ID</th>
+    <th class="col-3">Username</th>
+    <th class="col-2">name</th>
+    <th class="col-1">role</th>
+    <th class="col-2">Create At</th>
+    <th class="col-2">Update At</th>
+    <th class="col-1">Setting</th>
+  </tr>
+  <% @users.each do |user| %>
+    <tr>
+      <td class="col-1 userlist_id"><%= user.id %></td>
+      <td class="col-3 userlist_username"><%= user.username %></td>
+      <td class="col-2 userlist_name"><%= user.name %></td>
+      <td class="col-1 userlist_role">
+        <div class="userlist_role_<%= user.role_id %>"><%= user.role_id %></div>
+      </td>
+      <td class="col-2 userlist_create"><%= user.created_at ? user.created_at.strftime("%Y-%m-%d") : '' %></td>
+      <td class="col-2 userlist_update"><%= user.updated_at ? user.updated_at.strftime("%Y-%m-%d") : '' %></td>
+      <td class="col-1 userlist_setting"><%= link_to 'more', admin_manage_user_path(user.id), class: 'btn btn-success', data: { turbo: false } %></td>
+    </tr>
+  <% end %>
+</table>
+<div class="todolist_pagination">
+  <%= paginate @users %>
+</div>

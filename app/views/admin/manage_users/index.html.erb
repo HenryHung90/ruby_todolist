@@ -1,0 +1,13 @@
+<div class="home_container d-flex justify-content-center align-items-center">
+  <%= render 'shared/admin_navbar' %>
+  <%= render 'shared/admin_searchlist' %>
+  <div class="userlist_container">
+    <%= turbo_frame_tag 'users' do %>
+      <%= render 'userlist' %>
+    <% end %>
+  </div>
+  <% flash.each do |type, msg| %>
+    <script>alert("<%= msg %>")</script>
+    <p><%= msg %></p>
+  <% end %>
+</div>

@@ -120,21 +120,25 @@ body {
     width: 80vw;
 }
 
-.todolist_container {
+.todolist_container,
+.userlist_container {
     height: 80vh;
     width: 85vw;
     background-color: white;
     margin: 10px 0;
+    overflow-y: scroll;
 }
 
-.todolist_table tr {
+.todolist_table tr,
+.userlist_table tr {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 60px;
 }
 
-.todolist_table td {
+.todolist_table td,
+.userlist_table td {
     height: 60px;
     display: flex;
     align-items: center;
@@ -181,4 +185,13 @@ body {
 
 .todolist_status_done {
     background-color: #C5F9D7;
+}
+
+.pagination {
+    width: 100%;
+    justify-content: center;
+}
+
+.pagination span {
+    padding: 0 10px;
 }
