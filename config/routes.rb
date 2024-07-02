@@ -21,4 +21,5 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root 'session#new'
+  match '*path', to: 'application#render_no_found', via: :all
 end
