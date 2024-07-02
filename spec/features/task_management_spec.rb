@@ -5,8 +5,8 @@ require 'rails_helper' # 引入 Rails 測試助手
 RSpec.feature 'TaskManagement', type: :feature do
   # 定義 feature 測試
   # 創建 User 以及一個 Task 關聯於 User
-  let(:user) { create(:user) }
-  let(:task) { create(:task, user:) }
+  let!(:user) { create(:user) }
+  let!(:task) { create(:task, user:) }
 
   before do
     visit login_path
