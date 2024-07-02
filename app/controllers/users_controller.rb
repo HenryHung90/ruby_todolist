@@ -12,11 +12,16 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    # raise 'This is a test exception'
+    @user = User.find_by(username: params[:id])
     @tasks = @user.tasks
+                  .includes(:tags)
                   .sort_by_date_and_priority(params[:sort])
                   .filter_by_status(params[:status])
                   .filter_by_title(params[:title])
+                  .filter_by_tag(params[:tag])
+                  .page(params[:page]).per(10)
+    @tags = get_all_user_tags(@tasks)
   end
 
   def new; end
@@ -28,4 +33,16 @@ class UsersController < ApplicationController
   def update; end
 
   def destory; end
+
+  private
+
+  def get_all_user_tags(tasks)
+    tags = []
+    tasks.each do |task|
+      task.tags.each do |tag|
+        tags << tag.name
+      end
+    end
+    tags.uniq
+  end
 end
