@@ -1,32 +1,9 @@
 <div class="home_container d-flex justify-content-center align-items-center">
   <%= render 'shared/navbar' %>
-
-  <div class="sort-container d-flex justify-content-center m-2">
-    <%= form_with url: user_path, method: :get, local: true, data: { turbo_frame: 'tasks' }, class: 'd-flex justify-content-center' do %>
-      <%= select_tag :status, options_for_select(%w'pending progress done', params[:status]), include_blank: 'All', class: 'form-select m-1', onchange: 'this.form.submit();' %>
-      <%= select_tag :sort, options_for_select(%w'created_at start_time end_time', params[:sort]), include_blank: 'All', class: 'form-select m-1', onchange: 'this.form.submit();' %>
-      <%= text_field_tag :title, params[:title], placeholder: 'Search by title', class: 'form-control', onchange: 'this.form.submit();' %>
-    <% end %>
-  </div>
+  <%= render 'shared/searchlist' %>
   <div class="todolist_container">
     <%= turbo_frame_tag 'tasks' do %>
-      <table class="table todolist_table">
-        <tr>
-          <th class="col-2">Title</th>
-          <th class="col-1">Label</th>
-          <th class="col-1">Pry</th>
-          <th class="col-1">Status</th>
-          <th class="col-2">Join Date</th>
-          <th class="col-2">Start Date</th>
-          <th class="col-2">End Date</th>
-          <th class="col-1">Setting</th>
-        </tr>
-        <%= render @tasks %>
-      </table>
+      <%= render 'shared/tasklist' %>
     <% end %>
   </div>
-  <% flash.each do |type, msg| %>
-    <script>alert("<%= msg %>")</script>
-    <p><%= msg %></p>
-  <% end %>
 </div>
