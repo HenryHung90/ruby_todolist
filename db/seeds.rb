@@ -35,4 +35,3 @@ Task.destroy_all
 end
 
 puts "Created #{User.count} users with #{Task.count} tasks."
-Ｆ
