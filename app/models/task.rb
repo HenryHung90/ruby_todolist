@@ -9,6 +9,7 @@ class Task < ApplicationRecord
   accepts_nested_attributes_for :tags, allow_destroy: true
   # scope :complete_before, ->(date) { where('end_time < ?', date) }
   # scope :status_done, -> { where(status: 'done') }
+  # 透過 join/start/end date or priority 排序
   scope :sort_by_date_and_priority, lambda { |sort_by|
     sort_by = sort_by.presence_in(%w[created_at start_time end_time priority]) || 'created_at'
     return order(sort_by => :asc) if sort_by != 'priority'
