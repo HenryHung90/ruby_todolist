@@ -1,7 +1,7 @@
 <div class="sort-container d-flex justify-content-center m-2">
-  <%= form_with url: user_path, method: :get, local: true, data: { turbo_frame: 'tasks' }, class: 'd-flex justify-content-center' do %>
-    <%= select_tag :status, options_for_select(%w'pending progress done', params[:status]), include_blank: 'All', class: 'form-select m-1', onchange: 'this.form.submit();' %>
-    <%= select_tag :sort_by, options_for_select(%w'created_at start_time end_time', params[:sort_by]), class: 'form-select m-1', onchange: 'this.form.submit();' %>
-    <%= text_field_tag :title, params[:title], placeholder: 'Search by title', class: 'form-control', onchange: 'this.form.submit();' %>
+  <%= form_with url: user_path, method: :get, local: true, data: { turbo_frame: 'tasks' }, class: 'd-flex justify-content-center' do |f| %>
+    <%= f.select :status, options_for_select(%w[pending progress done], params[:status]), include_blank: 'All', class: 'form-select m-1', onchange: 'this.form.submit();' %>
+    <%= f.select :sort_by, options_for_select(%w[created_at start_time end_time], params[:sort_by]), class: 'form-select m-1', onchange: 'this.form.submit();' %>
+    <%= f.text_field :title, params[:title], placeholder: 'Search by title', class: 'form-control', onchange: 'this.form.submit();' %>
   <% end %>
 </div>
