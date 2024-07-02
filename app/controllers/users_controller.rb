@@ -12,6 +12,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    # raise 'This is a test exception'
     @user = User.find_by(username: params[:id])
     return unless @user.tasks
 
