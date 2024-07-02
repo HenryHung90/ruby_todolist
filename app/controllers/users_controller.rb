@@ -13,7 +13,6 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(username: params[:id])
-    return unless @user.tasks
 
     @tasks = @user.tasks
                   .includes(:tags)
@@ -21,7 +20,6 @@ class UsersController < ApplicationController
                   .filter_by_status(params[:status])
                   .filter_by_title(params[:title])
                   .page(params[:page]).per(10)
-
   end
 
   def new; end

@@ -34,4 +34,4 @@ Task.destroy_all
   end
 end
 
-puts "Created #{User.count} users with #{Task.count} tasks."
+Rails.logger.debug "Created #{User.count} users with #{Task.count} tasks."
