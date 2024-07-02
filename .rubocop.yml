@@ -25,6 +25,9 @@ Metrics/BlockLength:
     - 'spec/features/task_management_spec.rb'
 
 # Add additional configuration as needed
-# def 允許的最大行數為 25 行
+# def 允許的最大行數為 50 行
 Metrics/MethodLength:
-  Max: 35
+  Max: 50
+
+Metrics/AbcSize:
+  Max: 25

@@ -1,0 +1,35 @@
+<table class="table todolist_table">
+  <tr>
+    <th class="col-2">Title</th>
+    <th class="col-1">Label</th>
+    <th class="col-1">Pry</th>
+    <th class="col-1">Status</th>
+    <th class="col-2">Join Date</th>
+    <th class="col-2">Start Date</th>
+    <th class="col-2">End Date</th>
+    <th class="col-1">Setting</th>
+  </tr>
+  <% @tasks.each do |task| %>
+    <tr>
+      <td class="col-2 todolist_title"><%= task.title %></td>
+      <td class="col-1 todolist_tags">
+        <% task.tags.each do |tag| %>
+          <div><%= tag.name %></div>
+        <% end %>
+      </td>
+      <td class="col-1 todolist_pry">
+        <div class="todolist_pry_<%= task.priority %>"><%= task_pry(task.priority) %></div>
+      </td>
+      <td class="col-1 todolist_status">
+        <div class="todolist_status_<%= task.status %>"><%= task.status %></div>
+      </td>
+      <td class="col-2 todolist_join"><%= task.created_at.strftime("%Y-%m-%d") %></td>
+      <td class="col-2 todolist_start"><%= task.start_time ? task.start_time.strftime("%Y-%m-%d") : '' %></td>
+      <td class="col-2 todolist_end"><%= task.end_time ? task.end_time.strftime("%Y-%m-%d") : '' %></td>
+      <td class="col-1 todolist_setting"><%= link_to 'more', user_task_path(@user.username, task), class: 'btn btn-success', data: { turbo: false } %></td>
+    </tr>
+  <% end %>
+</table>
+<div class="todolist_pagination">
+  <%= paginate @tasks %>
+</div>

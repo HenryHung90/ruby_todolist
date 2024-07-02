@@ -9,14 +9,14 @@ RSpec.describe TasksController, type: :controller do
   # 創建 task 關聯至該 User
   let(:task) { create(:task, user:) }
 
-  # before do
-  #   sign_in user
-  # end
+  before do
+    request.session[:user_id] = user.id
+  end
 
   # 測試 GET new 是否成功，並返回 HTTP status
   describe 'GET #new' do
     it 'returns http success' do
-      get :new, params: { user_id: user.id }
+      get :new, params: { user_id: user.username }
       expect(response).to have_http_status(:success)
       allow(controller).to receive(:render) { nil } # 禁用實際視圖渲染
     end
@@ -26,7 +26,7 @@ RSpec.describe TasksController, type: :controller do
   describe 'POST #create' do
     it 'creates a new task' do
       expect do
-        post :create, params: { user_id: user.id, task: attributes_for(:task) }
+        post :create, params: { user_id: user, task: attributes_for(:task) }
       end.to change(Task, :count).by(1)
     end
   end
@@ -34,7 +34,7 @@ RSpec.describe TasksController, type: :controller do
   # 測試 GET show 是否返回 HTTP status
   describe 'GET #show' do
     it 'returns http success' do
-      get :show, params: { user_id: user.id, id: task.id }
+      get :show, params: { user_id: user.username, id: task.id }
       expect(response).to have_http_status(:success)
     end
   end
@@ -42,7 +42,7 @@ RSpec.describe TasksController, type: :controller do
   # 測試 PATCH update 是否正確修改
   describe 'PATCH #update' do
     it 'updates the task' do
-      patch :update, params: { user_id: user.id, id: task.id, task: { title: 'Updated Title' } }
+      patch :update, params: { user_id: user, id: task.id, task: { title: 'Updated Title' } }
       task.reload
       expect(task.title).to eq('Updated Title')
     end
@@ -53,7 +53,7 @@ RSpec.describe TasksController, type: :controller do
     it 'deletes the task' do
       task
       expect do
-        delete :destroy, params: { user_id: user.id, id: task.id }
+        delete :destroy, params: { user_id: user.username, id: task.id }
       end.to change(Task, :count).by(-1)
     end
   end
