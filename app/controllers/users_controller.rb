@@ -17,6 +17,7 @@ class UsersController < ApplicationController
                   .sort_by_date_and_priority(params[:sort])
                   .filter_by_status(params[:status])
                   .filter_by_title(params[:title])
+                  .page(params[:page]).per(10)
   end
 
   def new; end

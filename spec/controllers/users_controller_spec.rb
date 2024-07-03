@@ -31,9 +31,8 @@ RSpec.describe UsersController, type: :controller do
       end
       # 測試用 priority 進行篩選
       it 'filters tasks by priority' do
-        priority = "CASE priority WHEN 'high' THEN 1 WHEN 'medium' THEN 2 WHEN 'low' THEN 3 END"
         get :show, params: { id: user.id, sort_by: 'priority' }
-        expect(assigns(:tasks)).to match_array(user.tasks.order(Arel.sql(priority) => :asc))
+        expect(assigns(:tasks)).to match_array(user.tasks.order(:priority))
       end
       # 測試用 status 進行篩選
       it 'filters tasks by status' do
