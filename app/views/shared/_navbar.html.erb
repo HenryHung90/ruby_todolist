@@ -5,7 +5,7 @@
       <%= link_to "New Task", new_user_task_path(@user), class: "btn navbar_new_task" %>
     </div>
     <div class="navbar_right_functions">
-      <button class="btn navbar_Admin_mode">Admin Mode</button>
+      <%= link_to "Admin Mode", admin_manage_tasks_path, class: "btn navbar_Admin_mode" %>
       <button class="btn navbar_Logout">Logout</button>
     </div>
   </div>
