@@ -29,6 +29,11 @@ RSpec.describe UsersController, type: :controller do
         get :show, params: { id: user.id, sort_by: 'end_time' }
         expect(assigns(:tasks)).to match_array(user.tasks.order(end_time: :asc))
       end
+      # 測試用 priority 進行篩選
+      it 'filters tasks by priority' do
+        get :show, params: { id: user.id, sort_by: 'priority' }
+        expect(assigns(:tasks)).to match_array(user.tasks.order(:priority))
+      end
       # 測試用 status 進行篩選
       it 'filters tasks by status' do
         status = tasks.first.status
