@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Admins', type: :request do
+RSpec.describe 'Admin::ManageUsers', type: :request do
   describe 'GET /index' do
     pending "add some examples (or delete) #{__FILE__}"
   end

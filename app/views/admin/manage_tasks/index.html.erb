@@ -1,0 +1,18 @@
+<div class="home_container d-flex justify-content-center align-items-center">
+  <div class="sort-container d-flex justify-content-center m-2">
+    <%= form_with url: admin_manage_tasks_path, method: :get, local: true, data: { turbo_frame: 'tasks' }, class: 'd-flex justify-content-center' do %>
+      <%= select_tag :status, options_for_select(%w'pending progress done', params[:status]), include_blank: 'All', class: 'form-select m-1', onchange: 'this.form.submit();' %>
+      <%= select_tag :sort_by, options_for_select(%w'created_at start_time end_time priority', params[:sort_by]), class: 'form-select m-1', onchange: 'this.form.submit();' %>
+      <%= text_field_tag :title, params[:title], placeholder: 'Search by title', class: 'form-control', onchange: 'this.form.submit();' %>
+    <% end %>
+  </div>
+  <div class="todolist_container">
+    <%= turbo_frame_tag 'tasks' do %>
+      <%= render 'shared/tasklist' %>
+    <% end %>
+  </div>
+  <% flash.each do |type, msg| %>
+    <script>alert("<%= msg %>")</script>
+    <p><%= msg %></p>
+  <% end %>
+</div>
