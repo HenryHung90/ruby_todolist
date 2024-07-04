@@ -10,7 +10,7 @@ class SessionController < ApplicationController
     user = User.find_by(username: params[:username])
     if user&.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect_to user_path(user.username), notice: I18n.t('notices.login_success')
+      redirect_to user_path(id: user.username), notice: I18n.t('notices.login_success')
     else
       flash[:alert] = I18n.t('notices.login_failed')
       render :new, status: :unprocessable_entity

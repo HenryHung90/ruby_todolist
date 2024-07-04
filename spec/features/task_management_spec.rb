@@ -13,6 +13,7 @@ RSpec.feature 'TaskManagement', type: :feature do
     fill_in 'username', with: user.username
     fill_in 'password', with: user.password
     click_button 'Log in'
+    # has_css?('.todolist_container')
   end
 
   # 測試創建任務

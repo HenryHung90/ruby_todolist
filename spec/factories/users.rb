@@ -6,9 +6,9 @@ FactoryBot.define do
   # 密碼設定固定
   # 設定角色為 user
   factory :user do
-    username { Faker::Internet.username }
+    username { Faker::Internet.username.gsub('.', '') }
     name { Faker::Name.name }
-    password { 'password' }
+    password { 'password123' }
     role_id { 'user' }
   end
 end

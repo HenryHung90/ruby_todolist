@@ -19,6 +19,7 @@ class UsersController < ApplicationController
                   .filter_by_status(params[:status])
                   .filter_by_title(params[:title])
                   .page(params[:page]).per(10)
+
   end
 
   def new; end
