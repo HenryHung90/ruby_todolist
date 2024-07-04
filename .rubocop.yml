@@ -11,6 +11,7 @@ Rails:
   Enabled: true
 
 # 每一行最大長度為 120 字符
+###
 Layout/LineLength:
   Max: 120
 

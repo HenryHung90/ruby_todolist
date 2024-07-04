@@ -8,7 +8,7 @@ RSpec.describe UsersController, type: :controller do
   let(:user) { create(:user) }
   # 創建 tasks 關聯至該 User
   let(:tasks) { create_list(:task, 10, user:) }
-
+  
   before do
     request.session[:user_id] = user.id
   end
