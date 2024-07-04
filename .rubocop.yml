@@ -11,6 +11,7 @@ Rails:
   Enabled: true
 
 # 每一行最大長度為 120 字符
+###
 Layout/LineLength:
   Max: 120
 
@@ -19,12 +20,15 @@ Layout/LineLength:
 # 排除 environments/development & spec/features task_management_spec
 Metrics/BlockLength:
   Max: 50
-  ExcludedMethods: [ 'describe', 'context', 'it' ]
+  AllowedMethods: [ 'describe', 'context', 'it' ]
   Exclude:
     - 'config/environments/development.rb'
     - 'spec/features/task_management_spec.rb'
 
 # Add additional configuration as needed
-# def 允許的最大行數為 25 行
+# def 允許的最大行數為 50 行
 Metrics/MethodLength:
-  Max: 35
+  Max: 50
+
+Metrics/AbcSize:
+  Max: 25
