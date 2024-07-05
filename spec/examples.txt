@@ -1,24 +1,20 @@
-example_id                                            | status  | run_time        |
------------------------------------------------------ | ------- | --------------- |
-./spec/controllers/tasks_controller_spec.rb[1:1:1]    | passed  | 0.0191 seconds  |
-./spec/controllers/tasks_controller_spec.rb[1:2:1]    | passed  | 0.01623 seconds |
-./spec/controllers/tasks_controller_spec.rb[1:3:1]    | passed  | 0.01566 seconds |
-./spec/controllers/tasks_controller_spec.rb[1:4:1]    | passed  | 0.02041 seconds |
-./spec/controllers/tasks_controller_spec.rb[1:5:1]    | passed  | 0.02292 seconds |
-./spec/controllers/users_controller_spec.rb[1:1:1]    | passed  | 0.01205 seconds |
-./spec/controllers/users_controller_spec.rb[1:2:1:1]  | passed  | 0.00868 seconds |
-./spec/controllers/users_controller_spec.rb[1:2:1:2]  | passed  | 0.00757 seconds |
-./spec/controllers/users_controller_spec.rb[1:2:1:3]  | passed  | 0.00875 seconds |
-./spec/controllers/users_controller_spec.rb[1:2:1:4]  | passed  | 0.04045 seconds |
-./spec/controllers/users_controller_spec.rb[1:2:1:5]  | passed  | 0.06119 seconds |
-./spec/controllers/users_controller_spec.rb[1:2:1:6]  | passed  | 0.03753 seconds |
-./spec/features/task_management_spec.rb[1:1]          | passed  | 0.96728 seconds |
-./spec/features/task_management_spec.rb[1:2]          | passed  | 0.0286 seconds  |
-./spec/features/task_management_spec.rb[1:3]          | passed  | 0.12679 seconds |
-./spec/features/task_management_spec.rb[1:4]          | passed  | 0.07023 seconds |
-./spec/features/task_management_spec.rb[1:5]          | passed  | 0.03144 seconds |
-./spec/helpers/admin/manage_tasks_helper_spec.rb[1:1] | pending | 0.00001 seconds |
-./spec/helpers/admin/manage_users_helper_spec.rb[1:1] | pending | 0.00002 seconds |
-./spec/requests/admin/manage_tasks_spec.rb[1:1:1]     | pending | 0.00001 seconds |
-./spec/requests/admin/manage_users_spec.rb[1:1:1]     | pending | 0.00001 seconds |
-./spec/requests/admin_spec.rb[1:1:1]                  | pending | 0.00001 seconds |
+example_id                                           | status  | run_time        |
+---------------------------------------------------- | ------- | --------------- |
+./spec/controllers/tasks_controller_spec.rb[1:1:1]   | passed  | 0.01686 seconds |
+./spec/controllers/tasks_controller_spec.rb[1:2:1]   | passed  | 0.01489 seconds |
+./spec/controllers/tasks_controller_spec.rb[1:3:1]   | passed  | 0.01124 seconds |
+./spec/controllers/tasks_controller_spec.rb[1:4:1]   | passed  | 0.0314 seconds  |
+./spec/controllers/tasks_controller_spec.rb[1:5:1]   | passed  | 0.01209 seconds |
+./spec/controllers/users_controller_spec.rb[1:1:1]   | passed  | 0.00672 seconds |
+./spec/controllers/users_controller_spec.rb[1:2:1:1] | passed  | 0.01334 seconds |
+./spec/controllers/users_controller_spec.rb[1:2:1:2] | passed  | 0.00714 seconds |
+./spec/controllers/users_controller_spec.rb[1:2:1:3] | passed  | 0.01631 seconds |
+./spec/controllers/users_controller_spec.rb[1:2:1:4] | passed  | 0.04944 seconds |
+./spec/controllers/users_controller_spec.rb[1:2:1:5] | passed  | 0.05382 seconds |
+./spec/controllers/users_controller_spec.rb[1:2:1:6] | passed  | 0.05937 seconds |
+./spec/features/task_management_spec.rb[1:1]         | passed  | 0.02636 seconds |
+./spec/features/task_management_spec.rb[1:2]         | passed  | 0.69215 seconds |
+./spec/features/task_management_spec.rb[1:3]         | passed  | 0.09661 seconds |
+./spec/features/task_management_spec.rb[1:4]         | passed  | 0.11141 seconds |
+./spec/features/task_management_spec.rb[1:5]         | passed  | 0.06788 seconds |
+./spec/requests/admin_spec.rb[1:1:1]                 | pending | 0.00001 seconds |
