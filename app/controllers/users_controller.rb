@@ -13,7 +13,11 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @tasks = filter_tasks(@user.tasks).page(params[:page]).per(10)
+    @tasks = @user.tasks
+                  .sort_by_date_and_priority(params[:sort])
+                  .filter_by_status(params[:status])
+                  .filter_by_title(params[:title])
+                  .page(params[:page]).per(10)
   end
 
   def new; end
@@ -26,8 +30,6 @@ class UsersController < ApplicationController
 
   def destory; end
 
-  private
-
   # 篩選 Task
   def filter_tasks(tasks)
     tasks = sort_tasks(tasks)
@@ -38,9 +40,7 @@ class UsersController < ApplicationController
   # 透過 join start end date 排序
   def sort_tasks(tasks)
     sort_by = params[:sort_by].presence_in(SORTABLE_COLUMNS) || 'created_at'
-    return tasks.order(sort_by => :asc) if sort_by != 'priority'
-
-    tasks.order(Arel.sql("CASE priority WHEN 'high' THEN 1 WHEN 'medium' THEN 2 WHEN 'low' THEN 3 END") => :asc)
+    tasks.order(sort_by => :asc)
   end
 
   # 透過 status 篩選
