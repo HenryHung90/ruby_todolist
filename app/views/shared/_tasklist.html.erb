@@ -26,7 +26,7 @@
       <td class="col-2 todolist_join"><%= task.created_at.strftime("%Y-%m-%d") %></td>
       <td class="col-2 todolist_start"><%= task.start_time ? task.start_time.strftime("%Y-%m-%d") : '' %></td>
       <td class="col-2 todolist_end"><%= task.end_time ? task.end_time.strftime("%Y-%m-%d") : '' %></td>
-      <td class="col-1 todolist_setting"><%= link_to 'more', user_task_path(task.user_id, task), class: 'btn btn-success' %></td>
+      <td class="col-1 todolist_setting"><%= link_to 'more', user_task_path(task.user_id, task), class: 'btn btn-success', data: { turbo: false } %></td>
     </tr>
   <% end %>
 </table>
